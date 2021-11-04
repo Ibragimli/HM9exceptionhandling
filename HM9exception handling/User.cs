@@ -41,7 +41,7 @@ namespace HM9exception_handling
             set
             {
 
-                if (value.Length > 8 && value.Length < 25 && check.HasUpper(value) && check.HasLower(value) && check.HasDigit(value))
+                if (!string.IsNullOrWhiteSpace(value) &&value.Length > 8 && value.Length < 25 && check.HasUpper(value) && check.HasLower(value) && check.HasDigit(value))
                 {
                     _password = value;
                 }

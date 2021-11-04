@@ -7,7 +7,7 @@ namespace HM9exception_handling
     {
         static void Main(string[] args)
         {
-                
+
             string username;
             string password;
 
@@ -15,14 +15,14 @@ namespace HM9exception_handling
             {
                 Console.WriteLine("username:");
                 username = Console.ReadLine();
+                User user = new User(username);
 
-                Console.WriteLine("Password daxil edin");
-                password = Console.ReadLine();
-                User user = new User(username)
+                if (!string.IsNullOrWhiteSpace(username) && username.Length >= 6 && username.Length <= 25)
                 {
-                    Password = password
-                };
-
+                    Console.WriteLine("Password daxil edin");
+                    password = Console.ReadLine();
+                    user.Password = password;
+                }
             }
             catch (InvalidUserNameException e)
             {
@@ -31,10 +31,11 @@ namespace HM9exception_handling
             catch (PasswordIncorrectException e)
             {
                 Console.WriteLine(e.Message);
+
             }
             catch (Exception)
             {
-                    Console.WriteLine("Bilinmeyen bir xeta bas verdi!!!");
+                Console.WriteLine("Bilinmeyen bir xeta bas verdi!!!");
             }
         }
     }
