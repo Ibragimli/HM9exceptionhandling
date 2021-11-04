@@ -17,13 +17,13 @@ namespace HM9exception_handling
 
             set
             {
-                if (!string.IsNullOrWhiteSpace(value) || value.Length > 6 || value.Length < 25)
+                if (!string.IsNullOrWhiteSpace(value) || value.Length > 6 && value.Length < 25)
                 {
                     UserName = value;
                 }
                 else
                 {
-                    throw new InvalidUserNameException("Passworda teleb olunan deyerleri odemedi! Xeta bas verdi!");
+                    throw new InvalidUserNameException("Passworda teleb olunan deyerleri odemedi! ,Xeta bas verdi!");
                 }
             }
         }

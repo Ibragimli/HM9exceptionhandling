@@ -7,19 +7,53 @@ namespace HM9exception_handling
     {
         static void Main(string[] args)
         {
-            User user = new User("salam");
             Check check = new Check();
             string username;
             string password;
-            do
+
+
+            try
             {
-                username = Console.ReadLine();
+                do
+                {
+                    Console.WriteLine("username:");
+                    username = Console.ReadLine();
 
-            } while (username.Length < 6 || username.Length >25);
+                } while (username.Length < 6 || username.Length > 25);
+                User user = new User(username);
 
-            password = Console.ReadLine();
+            }
+            catch (InvalidUserNameException)
+            {
+                Console.WriteLine("partdadi");
+            }
+            catch (Exception)
+            {
+
+                Console.WriteLine("Bilinmeyen bir xeta bas verdi!!!");
+            }
 
 
+            try
+            {
+                do
+                {
+                    password = Console.ReadLine();
+
+                } while (!check.HasDigit(password) || !check.HasLower(password) || !check.HasUpper(password) || password.Length < 6 || password.Length > 25);
+
+
+            }
+            catch (PasswordIncorrectException)
+            {
+                Console.WriteLine("duzgun daxil edilmedi diye error");
+            }
+
+            catch (Exception)
+            {
+
+                Console.WriteLine("Bilinmeyen bir xeta bas verdi!!!");
+            }
 
         }
     }
