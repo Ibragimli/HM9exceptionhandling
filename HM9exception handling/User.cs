@@ -11,35 +11,39 @@ namespace HM9exception_handling
         {
             this.UserName = username;
         }
+
+        
+        private string _userName;
         public string UserName
         {
-            get => this.UserName;
+            get =>_userName;
 
             set
             {
-                if (!string.IsNullOrWhiteSpace(value) || value.Length > 6 && value.Length < 25)
+                if (!string.IsNullOrWhiteSpace(value) && value.Length >= 6 && value.Length <= 25)
                 {
-                    UserName = value;
+                    _userName = value;
                 }
                 else
                 {
-                    throw new InvalidUserNameException("Passworda teleb olunan deyerleri odemedi! ,Xeta bas verdi!");
+                    throw new InvalidUserNameException("Username teleb olunan deyerleri odemedi! ,Xeta bas verdi!");
                 }
             }
         }
 
         Check check = new Check();
 
+        private string _password;
         public string Password
         {
-            get => this.Password;
+            get => _password;
 
             set
             {
 
-                if (!string.IsNullOrWhiteSpace(value) || value.Length > 8 || value.Length < 25 || check.HasUpper(value) || check.HasLower(value) || check.HasDigit(value))
+                if (value.Length > 8 && value.Length < 25 && check.HasUpper(value) && check.HasLower(value) && check.HasDigit(value))
                 {
-                    Password = value;
+                    _password = value;
                 }
                 else
                 {
